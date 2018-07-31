@@ -27,17 +27,14 @@ extern uint8_t is_master;
 enum layer_number
 {
   _QWERTY = 0,
-  _KEYPAD,
   _LOWER,
   _RAISE,
-  _PADFUNC,
   _ADJUST,
 };
 
 enum custom_keycodes
 {
   QWERTY = SAFE_RANGE,
-  KEYPAD,
   EISU,
   KANA,
   RGBRST
@@ -78,50 +75,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_LOWER),MO(_LOWER),  KC_CAPS, KC_LALT, KC_LGUI, KC_SPC, LT(_RAISE,KC_BSPC), \
                                                          LT(_RAISE,KC_ENT), KC_SPC,  KC_RGUI, KC_RALT, KC_APP,MO(_LOWER),MO(_LOWER) \
       ),
-
-    /* Keypad
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   /  |   *  | Del  |  F1  |  F6  |             |  F1  |  F6  | Del  | Tab  |   /  |   *  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |   7  |   8  |   9  | BS   |  F2  |  F7  |             |  F2  |  F7  | BS   |   7  |   8  |   9  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |   4  |   5  |   6  |  -   |  F3  |  F8  |             |  F3  |  F8  |  -   |   4  |   5  |   6  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |   1  |   2  |   3  |  +   |  F4  |  F9  |  F11 |  F11 |  F4  |  F9  |  +   |   1  |   2  |   3  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |   0  |   ,  |   .  | Enter|  F5  |  F10 |  F12 |  F12 |  F5  |  F10 | Enter|   0  |  ,   |   .  |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_KEYPAD] = LAYOUT( \
-      KC_TAB,  KC_PSLS, KC_PAST, KC_DEL,    KC_F1,   KC_F6,                     KC_F1,   KC_F6, KC_DEL,  KC_TAB,  KC_PSLS, KC_PAST, \
-      KC_KP_7, KC_KP_8, KC_KP_9, KC_BSPC,   KC_F2,   KC_F7,                     KC_F2,   KC_F7, KC_BSPC, KC_KP_7, KC_KP_8, KC_KP_9, \
-      KC_KP_4, KC_KP_5, KC_KP_6, KC_PMNS,   KC_F3,   KC_F8,                     KC_F3,   KC_F8, KC_PMNS, KC_KP_4, KC_KP_5, KC_KP_6, \
-      KC_KP_1, KC_KP_2, KC_KP_3, KC_PPLS,   KC_F4,   KC_F9,  KC_F11,  KC_F11,   KC_F4,   KC_F9, KC_PPLS, KC_KP_1, KC_KP_2, KC_KP_3, \
-      KC_KP_0, KC_COMM, KC_PDOT, KC_PENT,   KC_F5,  KC_F10,  LT(_PADFUNC,KC_F12),
-                                                            LT(_PADFUNC,KC_F12),KC_F5,  KC_F10, KC_PENT, KC_KP_0, KC_COMM, KC_PDOT \
-      ),
-
-    /*  Keypad function layer
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      | Pause| ScrLk| PtrSc|             | PtrSc| ScrLk| Pause|      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      | Home |  Up  | PgUp |             | PgUp |  Up  | Home |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |Delete|Insert| Left | Down | Right|             | Left | Down | Right|Insert|Delete|      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      | End  |      | PgDn |Adjust|Adjust| PgDn |      | End  |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_PADFUNC] = LAYOUT( \
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_PAUS, KC_SLCK, KC_PSCR,                   KC_PSCR, KC_SLCK, KC_PAUS, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_UP,   KC_PGUP,                   KC_PGUP, KC_UP,   KC_HOME, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX,  KC_DEL,  KC_INS, KC_LEFT, KC_DOWN, KC_RGHT,                   KC_LEFT, KC_DOWN, KC_RGHT, KC_INS,  KC_DEL,  XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_END,  XXXXXXX, KC_PGDN,MO(_ADJUST),
-                                                                 MO(_ADJUST), KC_PGDN, XXXXXXX, KC_END,  XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
-   ),
 
     /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -194,57 +147,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 #ifdef AUDIO_ENABLE
-
-float tone_qwerty[][2] = SONG(QWERTY_SOUND);
-float tone_dvorak[][2] = SONG(DVORAK_SOUND);
 float tone_plover[][2] = SONG(PLOVER_SOUND);
 float tone_plover_gb[][2] = SONG(PLOVER_GOODBYE_SOUND);
 float music_scale[][2] = SONG(MUSIC_SCALE_SOUND);
 #endif
 
-static int current_default_layer;
-
-uint32_t default_layer_state_set_kb(uint32_t state)
-{
-  // 1<<_QWERTY  - 1 == 1 - 1 == _QWERTY (=0)
-  // 1<<_KEYPAD - 1 == 2 - 1 == _KEYPAD (=1)
-  current_default_layer = state - 1;
-  return state;
-}
-
-void update_base_layer(int base)
-{
-  if (current_default_layer != base)
-  {
-    eeconfig_update_default_layer(1UL << base);
-    default_layer_set(1UL << base);
-  }
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
   switch (keycode)
   {
-  case QWERTY:
-    if (record->event.pressed)
-    {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_qwerty);
-#endif
-      update_base_layer(_QWERTY);
-    }
-    return false;
-    break;
-  case KEYPAD:
-    if (record->event.pressed)
-    {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_dvorak);
-#endif
-      update_base_layer(_KEYPAD);
-    }
-    return false;
-    break;
   case EISU:
     if (record->event.pressed)
     {
@@ -372,20 +283,13 @@ static void render_logo(struct CharacterMatrix *matrix)
   //matrix_write_P(&matrix, PSTR(" Split keyboard kit"));
 }
 
-static const char Qwerty_name[] PROGMEM = " Qwerty";
-static const char Keypad_name[] PROGMEM = " Keypad";
-
-static const char Padfunc_name[] PROGMEM = ":PadFunc";
 static const char Lower_name[] PROGMEM = ":Func";
 static const char Raise_name[] PROGMEM = ":Extra";
 static const char Adjust_name[] PROGMEM = ":Adjust";
 
 static const char *layer_names[] = {
-    [_QWERTY] = Qwerty_name,
-    [_KEYPAD] = Keypad_name,
     [_LOWER] = Lower_name,
     [_RAISE] = Raise_name,
-    [_PADFUNC] = Padfunc_name,
     [_ADJUST] = Adjust_name};
 
 void render_status(struct CharacterMatrix *matrix)
@@ -409,7 +313,6 @@ void render_status(struct CharacterMatrix *matrix)
   // Define layers here, Have not worked out how to have text displayed for each layer. Copy down the number you see and add a case for it below
   int name_num;
   uint32_t lstate;
-  matrix_write_P(matrix, layer_names[current_default_layer]);
   matrix_write_P(matrix, PSTR("\n"));
   for (lstate = layer_state, name_num = 0;
        lstate && name_num < sizeof(layer_names) / sizeof(char *);
