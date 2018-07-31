@@ -30,7 +30,6 @@ enum layer_number
   _COLEMAK,
   _DVORAK,
   _KEYPAD,
-  _AUX,
   _LOWER,
   _RAISE,
   _PADFUNC,
@@ -236,28 +235,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD, \
       _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______ \
    ),
-
-    /*  AUX modifier key layer
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |  BS  | Enter|      |      |      |      |      |      |      |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_AUX] = LAYOUT( \
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______,  KC_BSPC,  LT(_RAISE,KC_ENT), \
-                                                                     _______, _______, _______, _______, _______, _______, _______ \
-      )
 };
 
 #else
@@ -296,12 +273,6 @@ void update_base_layer(int base)
   {
     eeconfig_update_default_layer(1UL << base);
     default_layer_set(1UL << base);
-    layer_off(_AUX);
-  }
-  else
-  {
-    if (base < _KEYPAD)
-      layer_invert(_AUX);
   }
 }
 
@@ -481,7 +452,6 @@ static const char Colemak_name[] PROGMEM = " Colemak";
 static const char Dvorak_name[] PROGMEM = " Dvorak";
 static const char Keypad_name[] PROGMEM = " Keypad";
 
-static const char AUX_name[] PROGMEM = ":AUX";
 static const char Padfunc_name[] PROGMEM = ":PadFunc";
 static const char Lower_name[] PROGMEM = ":Func";
 static const char Raise_name[] PROGMEM = ":Extra";
@@ -492,7 +462,6 @@ static const char *layer_names[] = {
     [_COLEMAK] = Colemak_name,
     [_DVORAK] = Dvorak_name,
     [_KEYPAD] = Keypad_name,
-    [_AUX] = AUX_name,
     [_LOWER] = Lower_name,
     [_RAISE] = Raise_name,
     [_PADFUNC] = Padfunc_name,
