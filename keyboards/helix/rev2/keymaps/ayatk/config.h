@@ -3,6 +3,6 @@
 
 #undef TAPPING_FORCE_HOLD
 #undef TAPPING_TERM
-#define TAPPING_TERM 150
+#define TAPPING_TERM 200
 
 #endif
