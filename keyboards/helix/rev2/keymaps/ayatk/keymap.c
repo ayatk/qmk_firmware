@@ -37,6 +37,7 @@ enum custom_keycodes
   QWERTY = SAFE_RANGE,
   EISU,
   KANA,
+  ONEPASS,
   RGBRST
 };
 
@@ -84,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | PgUp |      | Up   |Delete| Home |             | Home |Delete| Up   |      | PgUp |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      | PgDn | Left | Down | Right| End  |      |      | End  | Left | Down | Right| PgDn |      |
+   * |      | PgDn | Left | Down | Right| End  |1PASS |1PASS | End  | Left | Down | Right| PgDn |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      | PrtSc|      |      |      |Adjust|Adjust|      |      |      | PrtSc|      |      |
    * `-------------------------------------------------------------------------------------------------'
@@ -93,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
       XXXXXXX, XXXXXXX, KC_PAUS, KC_SLCK, KC_INS,  XXXXXXX,                   XXXXXXX, KC_INS,  KC_SLCK, KC_PAUS, XXXXXXX, XXXXXXX, \
       _______, KC_HOME, XXXXXXX, KC_UP,   KC_DEL,  KC_PGUP,                   KC_PGUP, KC_DEL,  KC_UP,   XXXXXXX, KC_HOME, _______, \
-      _______, KC_END,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,  XXXXXXX, XXXXXXX,KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  _______, \
-        _______, _______, KC_PSCR, _______, _______, _______, MO(_ADJUST),
+      _______, KC_END,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,  ONEPASS, ONEPASS,KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  _______, \
+      _______, _______, KC_PSCR, _______, _______, _______, MO(_ADJUST),
                                                                  MO(_ADJUST), _______, _______, _______, KC_PSCR, _______, _______ \
       ),
 
@@ -216,6 +217,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       rgblight_enable();
     }
 #endif
+    break;
+  case ONEPASS:
+    if (record->event.pressed)
+    {
+      SEND_STRING(SS_LGUI("\\"));
+    }
+    return false;
     break;
   }
   return true;
