@@ -5,4 +5,7 @@
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
 
+// スリープ時にRGBを消す
+#define RGBLIGHT_SLEEP
+
 #endif
