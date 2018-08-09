@@ -103,20 +103,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |  _   |  -   |             |  =   |  +   |      |      |      |      |
+   * |      |      | Vol+ |      |  _   |  -   |             |  =   |  +   |      | Vol+ |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |  {   |  [   |             |  ]   |  }   |      |      |      |      |
+   * |      | Mute | Vol- |      |  {   |  [   |             |  ]   |  }   |      | Vol- | Mute |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      | EISU | EISU | KANA | KANA | Next | Vol- | Vol+ | Play |      |
+   * |      | Prev | Play | Next |      | EISU | EISU | KANA | KANA |      | Prev | Play | Next |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT( \
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LSFT(KC_MINS), KC_MINS,                   KC_EQL, LSFT(KC_EQL), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, LSFT(KC_LBRC), KC_LBRC,                   KC_RBRC, LSFT(KC_RBRC), XXXXXXX, XXXXXXX, XXXXXXX, _______, \
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       EISU,    EISU,    KANA,    KANA, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY, _______, \
+      XXXXXXX, XXXXXXX, KC__VOLUP, XXXXXXX, LSFT(KC_MINS), KC_MINS,                   KC_EQL,  LSFT(KC_EQL), XXXXXXX, KC__VOLUP, XXXXXXX, XXXXXXX, \
+      _______, KC__MUTE, KC__VOLDOWN, XXXXXXX, LSFT(KC_LBRC), KC_LBRC,                   KC_RBRC, LSFT(KC_RBRC), XXXXXXX, KC__VOLDOWN, KC__MUTE, _______, \
+      _______, KC_MRWD, KC_MPLY, KC_MFFD, XXXXXXX,       EISU,    EISU,    KANA,    KANA,    XXXXXXX, KC_MRWD, KC_MPLY, KC_MFFD, _______, \
       MO(_ADJUST),MO(_ADJUST),XXXXXXX, _______, _______, XXXXXXX, _______,
                                                                 _______, XXXXXXX, _______, _______, XXXXXXX,MO(_ADJUST),MO(_ADJUST) \
       ),
