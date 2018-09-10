@@ -27,6 +27,7 @@ extern uint8_t is_master;
 enum layer_number
 {
   _QWERTY = 0,
+  _EUCALYN,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -35,6 +36,7 @@ enum layer_number
 enum custom_keycodes
 {
   QWERTY = SAFE_RANGE,
+  EUCALYN,
   EISU,
   KANA,
   ONEPASS,
@@ -65,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   `  |   '  |   N  |   M  |   ,  |   .  |   /  | Shift|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps  | GUI  | Alt | Space|  BS  | Enter| Space| Alt  | GUI  | Menu |Lower |Lower |
+   * |Lower | Lower| Caps | GUI  | Alt  | Space|  BS  | Enter| Space| Alt  | GUI  | Menu |Lower |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
@@ -76,6 +78,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_LOWER),MO(_LOWER),  KC_CAPS, KC_LALT, KC_LGUI, KC_SPC, LT(_RAISE,KC_BSPC), \
                                                          LT(_RAISE,KC_ENT), KC_SPC,  KC_RGUI, KC_RALT, KC_APP,MO(_LOWER),MO(_LOWER) \
       ),
+    /* Eucalyn
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Tab  |   Q  |   W  |   ,  |   .  |   ;  |             |   M  |   R  |   D  |   Y  |   P  |  \   |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Ctrl |   A  |   O  |   E  |   I  |   U  |             |   G  |   T  |   K  |   S  |   N  | Ctrl |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Shift|   Z  |   X  |   C  |   V  |   F  |   `  |   '  |   B  |   H  |   J  |   L  |   /  | Shift|
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |Lower | Lower| Caps | GUI  | Alt  | Space|  BS  | Enter| Space| Alt  | GUI  | Menu |Lower |Lower |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+    [_EUCALYN] = LAYOUT(
+        KC_ESC,     KC_1,       KC_2,    KC_3,    KC_4,   KC_5,                  KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,
+        KC_TAB,     KC_Q,       KC_W,    KC_COMM, KC_DOT, KC_SCLN,               KC_M, KC_R, KC_D, KC_Y, KC_P, KC_BSLS,
+        KC_LCTL,    KC_A,       KC_O,    KC_E,    KC_I,   KC_U,                  KC_G, KC_T, KC_K, KC_S, KC_N, KC_RCTL,
+        KC_LSFT,    KC_Z,       KC_X,    KC_C,    KC_V,   KC_F, KC_GRV, KC_QUOT, KC_B, KC_H, KC_J, KC_L, KC_SLSH, KC_RSFT,
+        MO(_LOWER), MO(_LOWER), KC_CAPS, KC_LALT, KC_LGUI, KC_SPC, LT(_RAISE, KC_BSPC),
+        LT(_RAISE, KC_ENT), KC_SPC, KC_RGUI, KC_RALT, KC_APP, MO(_LOWER), MO(_LOWER)),
 
     /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -95,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, KC_PAUS, KC_SLCK, KC_INS,  XXXXXXX,                   XXXXXXX, KC_INS,  KC_SLCK, KC_PAUS, XXXXXXX, XXXXXXX, \
       _______, KC_HOME, ONEPASS, KC_UP,   KC_DEL,  KC_PGUP,                   KC_PGUP, KC_DEL,  KC_UP,   ONEPASS, KC_HOME, _______, \
       _______, KC_END,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,  XXXXXXX, XXXXXXX,KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  _______, \
-      _______, _______, KC_PSCR, _______, _______, _______, MO(_ADJUST),
+        _______, _______, KC_PSCR, _______, _______, _______, MO(_ADJUST),
                                                                  MO(_ADJUST), _______, _______, _______, KC_PSCR, _______, _______ \
       ),
 
@@ -129,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | HUE+ | SAT+ | VAL+ |RGB md|Audoff| Mac  |             | Mac  |Audoff|RGB md| VAL+ | SAT+ | HUE+ |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | HUE- | SAT- | VAL- |      |      |QWERTY|      |      |QWERTY|      |      | VAL- | SAT- | HUE- |
+   * | HUE- | SAT- | VAL- |     |EUCALYN|QWERTY|      |      |QWERTY|EUCALYN|     | VAL- | SAT- | HUE- |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
@@ -138,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, RESET,   RGBRST,  RGB_TOG,   AU_ON, AG_SWAP,                   AG_SWAP,   AU_ON, RGB_TOG,  RGBRST, XXXXXXX, XXXXXXX, \
       RGB_HUI, RGB_SAI, RGB_VAI,RGB_SMOD,  AU_OFF, AG_NORM,                   AG_NORM,  AU_OFF,RGB_SMOD, RGB_VAI, RGB_SAI, RGB_HUI, \
-      RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,  QWERTY, _______, _______,  QWERTY, XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD, \
+      RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, EUCALYN,  QWERTY, _______, _______,  QWERTY, EUCALYN, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD, \
       _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______ \
    ),
 };
@@ -149,12 +171,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef AUDIO_ENABLE
 float tone_qwerty[][2] = SONG(QWERTY_SOUND);
+float tone_eucalyn[][2] = SONG(DVORAK_SOUND);
 float tone_plover[][2] = SONG(PLOVER_SOUND);
 float tone_plover_gb[][2] = SONG(PLOVER_GOODBYE_SOUND);
 float music_scale[][2] = SONG(MUSIC_SCALE_SOUND);
 #endif
 
-void update_base_layer(uint16_t default_layer) {
+static int current_default_layer;
+
+uint32_t default_layer_state_set_kb(uint32_t state)
+{
+  // 1<<_QWERTY  - 1 == 1 - 1 == _QWERTY (=0)
+  // 1<<_COLEMAK - 1 == 2 - 1 == _COLEMAK (=1)
+  current_default_layer = state - 1;
+  return state;
+}
+
+void update_base_layer(uint16_t default_layer)
+{
   eeconfig_update_default_layer(1UL << default_layer);
   default_layer_set(1UL << default_layer);
 }
@@ -170,6 +204,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       PLAY_SONG(tone_qwerty);
 #endif
       update_base_layer(_QWERTY);
+    }
+    return false;
+    break;
+  case EUCALYN:
+    if (record->event.pressed)
+    {
+#ifdef AUDIO_ENABLE
+      PLAY_SONG(tone_eucalyn);
+#endif
+      update_base_layer(_EUCALYN);
     }
     return false;
     break;
@@ -307,11 +351,16 @@ static void render_logo(struct CharacterMatrix *matrix)
   //matrix_write_P(&matrix, PSTR(" Split keyboard kit"));
 }
 
+static const char Qwerty_name[] PROGMEM = " Qwerty";
+static const char Eucalyn_name[] PROGMEM = " Eucalyn ";
+
 static const char Lower_name[] PROGMEM = ":Func";
 static const char Raise_name[] PROGMEM = ":Extra";
 static const char Adjust_name[] PROGMEM = ":Adjust";
 
 static const char *layer_names[] = {
+    [_QWERTY] = Qwerty_name,
+    [_EUCALYN] = Eucalyn_name,
     [_LOWER] = Lower_name,
     [_RAISE] = Raise_name,
     [_ADJUST] = Adjust_name};
@@ -337,6 +386,7 @@ void render_status(struct CharacterMatrix *matrix)
   // Define layers here, Have not worked out how to have text displayed for each layer. Copy down the number you see and add a case for it below
   int name_num;
   uint32_t lstate;
+  matrix_write_P(matrix, layer_names[current_default_layer]);
   matrix_write_P(matrix, PSTR("\n"));
   for (lstate = layer_state, name_num = 0;
        lstate && name_num < sizeof(layer_names) / sizeof(char *);
