@@ -75,11 +75,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT_kc(
-    ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-    TAB,    Q,    W,    E,    R,    T,                  Y,    U,    I,    O,    P,  BSLS, \
-    LCTL,   A,    S,    D,    F,    G,                  H,    J,    K,    L, SCLN,  RCTL, \
-    LSFT,   Z,    X,    C,    V,    B,    GRV,  QUOT,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-    LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP, LOWER, LOWER \
+    ESC,   1,     2,    3,    4,    5,               6,   7,    8,     9,   0,     BSPC, \
+    TAB,   Q,     W,    E,    R,    T,               Y,   U,    I,     O,   P,     BSLS, \
+    LCTL,  A,     S,    D,    F,    G,               H,   J,    K,     L,   SCLN,  RCTL, \
+    LSFT,  Z,     X,    C,    V,    B,   GRV,  QUOT, N,   M,    COMM,  DOT, SLSH,  RSFT, \
+    LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS, RAEN, SPC, RGUI, RALT,  APP, LOWER, LOWER \
   ),
 
   /* Eucalyn (http://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout)
@@ -96,11 +96,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_EUCALYN] = LAYOUT_kc(
-    ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-    TAB,    Q,    W, COMM,  DOT, SCLN,                  M,    R,    D,    Y,    P,  BSLS, \
-    LCTL,   A,    O,    E,    I,    U,                  G,    T,    K,    S,    N,  RCTL, \
-    LSFT,   Z,    X,    C,    V,    F,    GRV,  QUOT,   B,    H,    J,    L, SLSH,  RSFT, \
-    LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP, LOWER, LOWER \
+    ESC,   1,     2,    3,    4,    5,               6,    7,    8,    9,   0,     BSPC, \
+    TAB,   Q,     W,    COMM, DOT,  SCLN,            M,    R,    D,    Y,   P,     BSLS, \
+    LCTL,  A,     O,    E,    I,    U,               G,    T,    K,    S,   N,     RCTL, \
+    LSFT,  Z,     X,    C,    V,    F,   GRV,  QUOT, B,    H,    J,    L,   SLSH,  RSFT, \
+    LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS, RAEN, SPC,  RGUI, RALT, APP, LOWER, LOWER \
   ),
 
   /* Lower
@@ -138,12 +138,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT_kc(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, _VOLUP, XXXXXXX, LSMI, MINS,                   EQL,  LSEQ, XXXXXXX, _VOLUP, XXXXXXX, XXXXXXX, \
-    _______, _MUTE, _VOLDOWN, XXXXXXX, LSLB, LBRC,                   RBRC, LSRB, XXXXXXX, _VOLDOWN, _MUTE, _______, \
-    _______, MRWD, MPLY, MFFD, XXXXXXX,       EISU,    EISU,    KANA,    KANA,    XXXXXXX, MRWD, MPLY, MFFD, _______, \
-    ADJ, ADJ, XXXXXXX, _______, _______, XXXXXXX, _______,
-    _______, XXXXXXX, _______, _______, XXXXXXX, ADJ, ADJ \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX, XXXXXXX, _VOLUP,  XXXXXXX, LSMI,    MINS,                      EQL,     LSEQ,    XXXXXXX, _VOLUP,  XXXXXXX, XXXXXXX, \
+    _______, _MUTE,  _VOLDOWN, XXXXXXX, LSLB,    LBRC,                      RBRC,    LSRB,    XXXXXXX,_VOLDOWN, _MUTE,   _______, \
+    _______, MRWD,    MPLY,    MFFD,    XXXXXXX, EISU,    EISU,    KANA,    KANA,    XXXXXXX, MRWD,    MPLY,    MFFD,    _______, \
+    ADJ,     ADJ,     XXXXXXX, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, XXXXXXX, ADJ,     ADJ \
   ),
 
   /* Adjust (Lower + Raise)
@@ -184,10 +183,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT_kc(
-    TAB,       Q,   W,    E,   R,    T,               Y,     U,    I,    O,     P, BSLS, \
-    LCTL,      A,   S,    D,   F,    G,               H,     J,    K,    L,  SCLN, QUOT, \
-    LSFT,      Z,   X,    C,   V,    B,               N,     M, COMM,  DOT,  SLSH, LSFT, \
-    LOWER, LOWER, ESC, LALT, LGUI, SPC, RABS, RAEN, SPC,  RGUI, RALT,  APP, LOWER, LOWER \
+    TAB,   Q,     W,   E,    R,    T,               Y,    U,    I,    O,   P,     BSLS, \
+    LCTL,  A,     S,   D,    F,    G,               H,    J,    K,    L,   SCLN,  QUOT, \
+    LSFT,  Z,     X,   C,    V,    B,               N,    M,    COMM, DOT, SLSH,  LSFT, \
+    LOWER, LOWER, ESC, LALT, LGUI, SPC, RABS, RAEN, SPC,  RGUI, RALT, APP, LOWER, LOWER \
   ),
 
   /* Eucalyn
@@ -239,9 +238,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT_kc(
-    GRV,  1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,    DEL, \
-    ____, F1,   F2,   F3,   F4,   F5,                     F6,   MINS, EQL,  LBRC, RBRC, BSLS, \
-    ____, F7,   F8,   F9,   F10,  F11,                    F12,  ____, ____, PGDN, PGUP, ____, \
+    GRV,  1,    2,    3,    4,    5,                6,    7,    8,    9,    0,    DEL, \
+    ____, F1,   F2,   F3,   F4,   F5,               F6,   MINS, EQL,  LBRC, RBRC, BSLS, \
+    ____, F7,   F8,   F9,   F10,  F11,              F12,  ____, ____, PGDN, PGUP, ____, \
     ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, MNXT, VOLD, VOLU, MPLY \
   ),
 
