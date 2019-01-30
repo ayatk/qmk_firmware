@@ -29,26 +29,27 @@ endef
 # Helix keyboard customize
 # you can edit follows 7 Variables
 #  jp: 以下の7つの変数を必要に応じて編集します。
-HELIX_ROWS = 5              # Helix Rows is 4 or 5
+HELIX_ROWS = 4              # Helix Rows is 4 or 5
 OLED_ENABLE = yes           # OLED_ENABLE
 LOCAL_GLCDFONT = no         # use each keymaps "helixfont.h" insted of "common/glcdfont.c"
 LED_BACK_ENABLE = yes       # LED backlight (Enable WS2812 RGB underlight.)
 LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
 LED_ANIMATIONS = no         # LED animations
 IOS_DEVICE_ENABLE = no      # connect to IOS device (iPad,iPhone)
+Link_Time_Optimization = no # if firmware size over limit, try this option
 
 ####  LED_BACK_ENABLE and LED_UNDERGLOW_ENABLE.
 ####    Do not enable these with audio at the same time.
 
-### Helix keyboard 'five_rows' keymap: convenient command line option
-##    make HELIX=<options> helix:five_rows
+### Helix keyboard 'default' keymap: convenient command line option
+##    make HELIX=<options> helix:defualt
 ##    option= oled | back | under | na | ios
 ##    ex.
-##      make HELIX=oled          helix:five_rows
-##      make HELIX=oled,back     helix:five_rows
-##      make HELIX=oled,under    helix:five_rows
-##      make HELIX=oled,back,na  helix:five_rows
-##      make HELIX=oled,back,ios helix:five_rows
+##      make HELIX=oled          helix:defualt
+##      make HELIX=oled,back     helix:defualt
+##      make HELIX=oled,under    helix:defualt
+##      make HELIX=oled,back,na  helix:defualt
+##      make HELIX=oled,back,ios helix:defualt
 ##
 ifneq ($(strip $(HELIX)),)
   ifeq ($(findstring oled,$(HELIX)), oled)
@@ -75,9 +76,9 @@ endif
 # $(info )
 
 ifneq ($(strip $(HELIX_ROWS)), 4)
-ifneq ($(strip $(HELIX_ROWS)), 5)
-$(error HELIX_ROWS = $(strip $(HELIX_ROWS)) is unexpected value)
-endif
+  ifneq ($(strip $(HELIX_ROWS)), 5)
+    $(error HELIX_ROWS = $(strip $(HELIX_ROWS)) is unexpected value)
+  endif
 endif
 OPT_DEFS += -DHELIX_ROWS=$(strip $(HELIX_ROWS))
 
@@ -95,27 +96,27 @@ else
 endif
 
 ifeq ($(strip $(IOS_DEVICE_ENABLE)), yes)
-    OPT_DEFS += -DIOS_DEVICE_ENABLE
+  OPT_DEFS += -DIOS_DEVICE_ENABLE
 endif
 
 ifeq ($(strip $(LED_ANIMATIONS)), yes)
-    OPT_DEFS += -DRGBLIGHT_ANIMATIONS
+  OPT_DEFS += -DLED_ANIMATIONS
 endif
 
 ifeq ($(strip $(OLED_ENABLE)), yes)
-    OPT_DEFS += -DOLED_ENABLE
+  OPT_DEFS += -DOLED_ENABLE
 endif
 
 ifeq ($(strip $(LOCAL_GLCDFONT)), yes)
-    OPT_DEFS += -DLOCAL_GLCDFONT
+  OPT_DEFS += -DLOCAL_GLCDFONT
+endif
+
+ifeq ($(strip $(Link_Time_Optimization)),yes)
+  EXTRAFLAGS += -flto -DUSE_Link_Time_Optimization
 endif
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
-
-ifndef QUANTUM_DIR
-	include ../../../../Makefile
-endif
 
 # Uncomment these for debugging
 # $(info -- RGBLIGHT_ENABLE=$(RGBLIGHT_ENABLE))
