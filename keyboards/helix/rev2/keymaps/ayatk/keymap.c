@@ -200,14 +200,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  |Shift |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Lower | Esc  | Alt  | GUI  | EISU | Space|  BS  | Enter| Space| KANA | Left | Down |  Up  |Right |
+   * | Lower| Menu | Alt  | Esc  | GUI  | Space|  BS  | Enter| Space| GUI  | Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT_kc(
     TAB,   Q,    W,    E,    R,    T,                Y,    U,    I,    O,    P,    BSLS,
     LCTL,  A,    S,    D,    F,    G,                H,    J,    K,    L,    SCLN, QUOT,
     LSFT,  Z,    X,    C,    V,    B,                N,    M,    COMM, DOT,  SLSH, LSFT,
-    LOWER, ESC,  LALT, LGUI, EN,   NUML, RABS, RAEN, NUMR, JP,   LEFT, DOWN, UP,   RGHT
+    LOWER, APP,  LALT, ESC,  LGUI, NUML, RABS, RAEN, NUMR, RGUI, LEFT, DOWN, UP,   RGHT
   ),
 
   /* Eucalyn
@@ -218,14 +218,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   F  |             |   B  |   H  |   J  |   L  |   /  | Shift|
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Lower | Esc  | Alt  | GUI  | EISU | Space|  BS  | Enter| Space| KANA | Left | Down |  Up  |Right |
+   * | Lower| Menu | Alt  | Esc  | GUI  | Space|  BS  | Enter| Space| GUI  | Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_EUCALYN] = LAYOUT_kc(
     TAB,   Q,    W,    COMM, DOT,  SCLN,             M,    R,    D,    Y,    P,    BSLS,
     LCTL,  A,    O,    E,    I,    U,                G,    T,    K,    S,    N,    QUOT,
     LSFT,  Z,    X,    C,    V,    F,                B,    H,    J,    L,    SLSH, RSFT,
-    LOWER, ESC,  LALT, LGUI, EN,   NUML, RABS, RAEN, NUMR, JP,   LEFT, DOWN, UP,   RGHT
+    LOWER, APP,  LALT, ESC,  LGUI, NUML, RABS, RAEN, NUMR, RGUI, LEFT, DOWN, UP,   RGHT
   ),
 
   /* Num
@@ -261,14 +261,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |      | Bri- | Bri+ |      |      |             | End  |Delete| ScrLk|      | PgDn |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |Adjust|      |      |      | PrtSc|      |      |
+   * |      |      |      |      |      |      |Adjust|Adjust|      |      |      | PrtSc|      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT_kc(
     XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,             XXXX,  INS, SLCK, PAUS, XXXX, ____,
     ____, MFFD, _VOLD, _VOLU, MPLY, _MUTE,          PGUP,  DEL,   UP, XXXX, HOME, ____,
     ____, XXXX, _BRID, _BRIU, XXXX, XXXX,           PGDN, LEFT, DOWN, RGHT,  END, ____,
-    ____, ____, ____, ____, ____, ____, ____,  ADJ, ____, ____, ____, PSCR, ____, ____
+    ____, ____, ____, ____, ____, ____,  ADJ,  ADJ, ____, ____, ____, PSCR, ____, ____
   ),
 
   /* Raise
@@ -506,6 +506,8 @@ static const char Qwerty_name[] PROGMEM = " Qwerty";
 static const char Eucalyn_name[] PROGMEM = " Eucalyn";
 static const char Keypad_name[] PROGMEM = " Keypad";
 
+static const char NumL_name[] PROGMEM = ":NumL";
+static const char NumR_name[] PROGMEM = ":NumR";
 static const char Lower_name[] PROGMEM = ":Func";
 static const char Raise_name[] PROGMEM = ":Extra";
 static const char Adjust_name[] PROGMEM = ":Adjust";
@@ -513,6 +515,9 @@ static const char Adjust_name[] PROGMEM = ":Adjust";
 static const char *layer_names[] = {
   [_QWERTY] = Qwerty_name,
   [_EUCALYN] = Eucalyn_name,
+
+  [_NUML] = NumL_name,
+  [_NUMR] = NumR_name,
   [_LOWER] = Lower_name,
   [_RAISE] = Raise_name,
   [_ADJUST] = Adjust_name
