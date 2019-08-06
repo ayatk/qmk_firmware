@@ -41,17 +41,15 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define KC_RST RESET
 
 // RGB
-#ifdef RGBLIGHT_ENABLE
-#    define KC_LRST RGBRST
-#    define KC_LTOG RGB_TOG
-#    define KC_LHUI RGB_HUI
-#    define KC_LHUD RGB_HUD
-#    define KC_LSAI RGB_SAI
-#    define KC_LSAD RGB_SAD
-#    define KC_LVAI RGB_VAI
-#    define KC_LVAD RGB_VAD
-#    define KC_LMOD RGB_MOD
-#endif
+#define KC_LRST RGBRST
+#define KC_LTOG RGB_TOG
+#define KC_LHUI RGB_HUI
+#define KC_LHUD RGB_HUD
+#define KC_LSAI RGB_SAI
+#define KC_LSAD RGB_SAD
+#define KC_LVAI RGB_VAI
+#define KC_LVAD RGB_VAD
+#define KC_LMOD RGB_MOD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
