@@ -27,7 +27,7 @@ extern uint8_t is_master;
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST };
 
-#define KC______ KC_TRNS
+#define KC_      KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_LOWEI MT(KC_LANG2, LOWER)
 #define KC_RAIKN MT(KC_LANG1, RAISE)
@@ -76,13 +76,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-        _____,    1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, _____,\
+             ,    1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,   F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX,\
+             ,   F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,   F6,    F7,    F8,    F9,   F10,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+             ,   F6,    F7,    F8,    F9,   F10,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   _____, _____, _____,    _____, _____, _____ \
+                                        ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
     ),
 
@@ -99,25 +99,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-        _____, EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, _____,\
+             , EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,XXXXX,  TILD,  UNDS,  MINS,  PIPE,                   BSLS,   EQL,  PLUS,   GRV, XXXXX, XXXXX,\
+             ,XXXXX,  TILD,  UNDS,  MINS,  PIPE,                   BSLS,   EQL,  PLUS,   GRV, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX, XXXXX,\
+             ,XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   _____, _____, _____,    _____, _____, _____ \
+                                        ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
     ),
 
     [_ADJUST] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-        _____, LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+             , LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____, LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+             , LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____, LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+             , LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   _____, _____, _____,    _____, _____, _____ \
+                                        ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
         )
     // clang-format on
