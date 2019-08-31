@@ -34,8 +34,6 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define KC_LSLB LSFT(KC_LBRC)  // [
 #define KC_LSRB LSFT(KC_RBRC)  // ]
 #define KC_CTLTB CTL_T(KC_TAB)
-#define KC_GUIEI GUI_T(KC_LANG2)
-#define KC_ALTKN ALT_T(KC_LANG1)
 
 // system
 #define KC_RST RESET
