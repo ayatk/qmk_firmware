@@ -33,7 +33,8 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define KC_RAIKN MT(KC_LANG1, RAISE)
 #define KC_LSLB LSFT(KC_LBRC)  // [
 #define KC_LSRB LSFT(KC_RBRC)  // ]
-#define KC_CTLTB CTL_T(KC_TAB)
+#define KC_CTLA CTL_T(KC_A)
+#define KC_CTLSC CTL_T(KC_SCLN)
 
 // system
 #define KC_RST RESET
@@ -53,11 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_QWERTY] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,      Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+         ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        CTLTB,    A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
+         TAB,  CTLA,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
+         LSFT,    Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     LGUI, LOWEI,   SPC,     ENT,  RAIKN,  LALT \
                                 //`--------------------'  `--------------------'
@@ -67,20 +68,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------.             ,-----------------------------------------.
      * | ESC  |  1   |  2   |  3   |  4   |  5   |             |  6   |  7   |  8   |  9   |  0   |  BS  |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-     * | Tab  |  F1  |  F2  |  F3  |  F4  |  F5  |             |  ←  |  ↓  |  ↑  |  →  |      |      |
+     * | Tab  | HOME | END  |PgDwon| PgUp |      |             |  ←  |  ↓  |  ↑  |  →  |      |      |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-     * | Shift|  F6  |  F7  |  F8  |  F9  |  F10 |             |      |      |      |      |      |      |
+     * | Shift|  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 |      |
      * `---------------------------+------+------+------+------+------+------+---------------------------'
      *                             | GUI |Lower/en|Space|Enter|Raise/ja|Alt  |
      *                             `-----------------------------------------'
      */
     [_LOWER] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-             ,    1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,      ,\
+            ,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             ,   F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX,\
+            ,  HOME,   END,  PGDN,  PGUP, XXXXX,                   LEFT,  DOWN,    UP,  RGHT, XXXXX, XXXXX,
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             ,   F6,    F7,    F8,    F9,   F10,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,      ,
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                         ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
@@ -90,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------.             ,-----------------------------------------.
      * | ESC  |  !   |  @   |  #   |  $   |  %   |             |  ^   |  &   |  *   |  (   |  )   |  BS  |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-     * | Tab  |      |  ~   |  _   |  -   |  |   |             |  \   |  =   |  +   |  `   |      |      |
+     * | Tab  | Ctrl |  ~   |  _   |  -   |  |   |             |  \   |  =   |  +   |  `   | Ctrl |      |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
      * | Shift|      |      |  {   |  [   |  (   |             |  )   |  ]   |  }   |      |      |      |
      * `---------------------------+------+------+------+------+------+------+---------------------------'
@@ -99,11 +100,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-             , EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,      ,\
+            ,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             ,XXXXX,  TILD,  UNDS,  MINS,  PIPE,                   BSLS,   EQL,  PLUS,   GRV, XXXXX, XXXXX,\
+            , LCTRL,  TILD,  UNDS,  MINS,  PIPE,                   BSLS,   EQL,  PLUS,   GRV, RCTRL, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             ,XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX, XXXXX,\
+            , XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX,      ,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                         ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
@@ -111,11 +112,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-             , LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             , LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-             , LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                         ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
