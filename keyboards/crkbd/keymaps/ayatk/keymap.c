@@ -30,7 +30,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_LOWEI MT(KC_LANG2, LOWER)
-#define KC_RAIKN MO(KC_LANG1, RAISE)
+#define KC_RAIKN MT(KC_LANG1, RAISE)
 #define KC_LSLB LSFT(KC_LBRC)  // [
 #define KC_LSRB LSFT(KC_RBRC)  // ]
 #define KC_CTLTB CTL_T(KC_TAB)
