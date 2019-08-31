@@ -21,13 +21,14 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _ADJUST 3
+#define _EUCALYN 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST };
+enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, LOWER, RAISE, ADJUST, BACKLIT, RGBRST };
 
-#define KC_      KC_TRNS
+#define KC_ KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_LOWEI MT(KC_LANG2, LOWER)
 #define KC_RAIKN MT(KC_LANG1, RAISE)
@@ -35,6 +36,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define KC_LSRB LSFT(KC_RBRC)  // ]
 #define KC_CTLA CTL_T(KC_A)
 #define KC_CTLSC CTL_T(KC_SCLN)
+#define KC_CTLS CTL_T(KC_S)
 
 // system
 #define KC_RST RESET
@@ -61,6 +63,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          LSFT,    Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     LGUI, LOWEI,   SPC,     ENT,  RAIKN,  LALT \
+                                //`--------------------'  `--------------------'
+    ),
+
+    [_EUCALYN] = LAYOUT_kc( \
+    //,-----------------------------------------.                ,-----------------------------------------.
+         ESC,  SCLN,  COMM,   DOT,     P,     Q,                      Y,     G,     D,     M,     F,  BSPC,\
+    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+         TAB,  CTLA,     O,     E,     I,     U,                      B,     N,     T,     R,  CTLS,  QUOT,\
+    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+         LSFT,    Z,     X,     C,     V,     W,                      H,     J,     K,     L,  SLSH,  RSFT,\
+    //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                        ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
     ),
 
@@ -112,9 +126,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-            ,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-            ,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX,QWERTY,EUCALYN,XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             ,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -208,6 +222,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QWERTY:
             if (record->event.pressed) {
                 persistent_default_layer_set(1UL << _QWERTY);
+            }
+            return false;
+        case EUCALYN:
+            if (record->event.pressed) {
+                persistent_default_layer_set(1UL << _EUCALYN);
             }
             return false;
         case LOWER:
