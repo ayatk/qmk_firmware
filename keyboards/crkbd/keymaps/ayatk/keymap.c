@@ -37,6 +37,8 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, LOWER, RAISE, ADJUST, BACKL
 #define KC_CTLA CTL_T(KC_A)
 #define KC_CTLSC CTL_T(KC_SCLN)
 #define KC_CTLS CTL_T(KC_S)
+#define KC_QWERTY QWERTY
+#define KC_EUCALYN EUCALYN
 
 // system
 #define KC_RST RESET
