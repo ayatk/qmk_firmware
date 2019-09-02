@@ -32,6 +32,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, LOWER, RAISE, ADJUST, BACKL
 #define KC_XXXXX KC_NO
 #define KC_LOWEI LT(_LOWER, KC_LANG2)
 #define KC_RAIKN LT(_RAISE, KC_LANG1)
+#define KC_ADJUST MO(_ADJUST)
 #define KC_LSLB LSFT(KC_LBRC)  // [
 #define KC_LSRB LSFT(KC_RBRC)  // ]
 #define KC_CTLA CTL_T(KC_A)
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
      * | Shift|  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 |      |
      * `---------------------------+------+------+------+------+------+------+---------------------------'
-     *                             | GUI |Lower/en|Space|Enter|Raise/ja|Alt  |
+     *                             | GUI |Lower/en|Space|Enter |ADJUST| Alt  |
      *                             `-----------------------------------------'
      */
     [_LOWER] = LAYOUT_kc( \
@@ -99,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             ,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,      ,
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                        ,      ,      ,         ,      ,       \
+                                        ,      ,      ,         ,ADJUST,       \
                                 //`--------------------'  `--------------------'
     ),
 
@@ -111,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
      * | Shift|      |      |  {   |  [   |  (   |             |  )   |  ]   |  }   |      |      |      |
      * `---------------------------+------+------+------+------+------+------+---------------------------'
-     *                             | GUI |Lower/en|Space|Enter|Raise/ja|Alt  |
+     *                             | GUI |ADJUST|Space|Enter|Raise/ja|Alt  |
      *                             `-----------------------------------------'
      */
     [_RAISE] = LAYOUT_kc( \
@@ -122,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             , XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX,      ,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                        ,      ,      ,         ,      ,       \
+                                        ,ADJUST,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
     ),
 
