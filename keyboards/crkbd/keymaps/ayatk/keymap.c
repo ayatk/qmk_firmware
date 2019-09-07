@@ -26,18 +26,18 @@ extern uint8_t is_master;
 #define _RAISE 3
 #define _ADJUST 4
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, LOWER, RAISE, ADJUST, BACKLIT, RGBRST };
+enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, RGBRST };
 
 #define KC_ KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_LOWEI LT(_LOWER, KC_LANG2)
 #define KC_RAIKN LT(_RAISE, KC_LANG1)
 #define KC_ADJUST MO(_ADJUST)
-#define KC_LSLB LSFT(KC_LBRC)  // [
-#define KC_LSRB LSFT(KC_RBRC)  // ]
-#define KC_CTLA CTL_T(KC_A)
-#define KC_CTLSC CTL_T(KC_SCLN)
-#define KC_CTLS CTL_T(KC_S)
+#define KC_LSLB LSFT(KC_LBRC)    // [
+#define KC_LSRB LSFT(KC_RBRC)    // ]
+#define KC_CTLA CTL_T(KC_A)      // Ctrl/A
+#define KC_CTLSC CTL_T(KC_SCLN)  // Ctrl/;
+#define KC_CTLS CTL_T(KC_S)      // Ctrl/S
 #define KC_QWERTY QWERTY
 #define KC_EUCALYN EUCALYN
 
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                         ,      ,      ,         ,      ,       \
                                 //`--------------------'  `--------------------'
-        )
+    )
     // clang-format on
 };
 
@@ -146,15 +146,6 @@ int RGB_current_mode;
 void persistent_default_layer_set(uint16_t default_layer) {
     eeconfig_update_default_layer(default_layer);
     default_layer_set(default_layer);
-}
-
-// Setting ADJUST layer RGB back to default
-void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
-    if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
-        layer_on(layer3);
-    } else {
-        layer_off(layer3);
-    }
 }
 
 void matrix_init_user(void) {
@@ -230,31 +221,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case EUCALYN:
             if (record->event.pressed) {
                 persistent_default_layer_set(1UL << _EUCALYN);
-            }
-            return false;
-        case LOWER:
-            if (record->event.pressed) {
-                layer_on(_LOWER);
-                update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_LOWER);
-                update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-        case RAISE:
-            if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_RAISE);
-                update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-        case ADJUST:
-            if (record->event.pressed) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
             }
             return false;
         case RGB_MOD:
