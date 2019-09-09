@@ -7,6 +7,11 @@
 #ifdef PROTOCOL_LUFA
 #include "lufa.h"
 #endif
+#ifndef LOCAL_GLCDFONT
+#    include "lib/glcdfont.c"
+#else
+#    include <crkbdfont.h>
+#endif
 #include "sendchar.h"
 #include "timer.h"
 
