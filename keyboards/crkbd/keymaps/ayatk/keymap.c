@@ -161,31 +161,79 @@ void matrix_init_user(void) {
 // SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
 #ifdef SSD1306OLED
 
-// When add source files to SRC in rules.mk, you can use functions.
-const char *read_layer_state(void);
-const char *read_logo(void);
-void        set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
+static void render_logo(struct CharacterMatrix *matrix) {
+    static char logo[] = {
+        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94, 0xa0, 0xa1, 0xa2, 0xa3, 0xa4,
+        0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4, 0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9,
+        0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0
+    };
+    matrix_write(matrix, logo);
+#    if defined(RGBLIGHT_ENABLE) && defined(RGBLIGHT_ANIMATIONS)
+    char buf[30];
 
-// const char *read_mode_icon(bool swap);
-// const char *read_host_led_state(void);
-// void set_timelog(void);
-// const char *read_timelog(void);
+    if (rgblight_config.enable) {
+        snprintf(buf, sizeof(buf), " LED %2d: %d,%d,%d ",
+            rgblight_config.mode,
+            rgblight_config.hue / RGBLIGHT_HUE_STEP,
+            rgblight_config.sat / RGBLIGHT_SAT_STEP,
+            rgblight_config.val / RGBLIGHT_VAL_STEP
+        );
+        matrix_write(matrix, buf);
+    }
+
+#    endif
+    // matrix_write_P(&matrix, PSTR(" Split keyboard kit"));
+}
+
+// Render to OLED
+int row_num    = 0;
+int row_func   = 0;
+int row_adjust = 0;
+int row_shift  = 0;
 
 void matrix_scan_user(void) { iota_gfx_task(); }
 
+void render_status(struct CharacterMatrix *matrix) {
+    // froggy logo
+    static char logo[4][1][17] = {{{0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0}}, {{0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94, 0}}, {{0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4, 0}}, {{0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0}}};
+
+    static char indctr[8][2][4] = {
+        // white icon
+        {{0x60, 0x61, 0x62, 0}, {0x63, 0x64, 0}},  // numbers
+        {{0x80, 0x81, 0x82, 0}, {0x83, 0x84, 0}},  // shift
+        {{0xa0, 0xa1, 0xa2, 0}, {0xa3, 0xa4, 0}},  // function
+        {{0xc0, 0xc1, 0xc2, 0}, {0xc3, 0xc4, 0}},  // adjust
+        // Black icon
+        {{0x75, 0x76, 0x77, 0}, {0x78, 0x79, 0}},  // numbers
+        {{0x95, 0x96, 0x97, 0}, {0x98, 0x99, 0}},  // shift
+        {{0xb5, 0xb6, 0xb7, 0}, {0xb8, 0xb9, 0}},  // function
+        {{0xd5, 0xd6, 0xd7, 0}, {0xd8, 0xd9, 0}},  // adjust
+    };
+
+    row_num    = (layer_state_is(_LOWER) && !layer_state_is(_ADJUST)) ? 4 : 0;
+    row_shift  = (layer_state_is(_EUCALYN)) ? 4 : 0;
+    row_func   = (layer_state_is(_RAISE) && !layer_state_is(_ADJUST)) ? 4 : 0;
+    row_adjust = (layer_state_is(_ADJUST)) ? 4 : 0;
+
+    matrix_write(matrix, indctr[row_num][0]);
+    matrix_write(matrix, indctr[row_func][1]);
+    matrix_write(matrix, logo[0][0]);
+    matrix_write(matrix, indctr[row_num + 1][0]);
+    matrix_write(matrix, indctr[row_func + 1][1]);
+    matrix_write(matrix, logo[1][0]);
+    matrix_write(matrix, indctr[row_adjust + 2][0]);
+    matrix_write(matrix, indctr[row_shift + 2][1]);
+    matrix_write(matrix, logo[2][0]);
+    matrix_write(matrix, indctr[row_adjust + 3][0]);
+    matrix_write(matrix, indctr[row_shift + 3][1]);
+    matrix_write(matrix, logo[3][0]);
+}
+
 void matrix_render_user(struct CharacterMatrix *matrix) {
     if (is_master) {
-        // If you want to change the display of OLED, you need to change here
-        matrix_write_ln(matrix, read_layer_state());
-        matrix_write_ln(matrix, read_keylog());
-        matrix_write_ln(matrix, read_keylogs());
-        // matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
-        // matrix_write_ln(matrix, read_host_led_state());
-        // matrix_write_ln(matrix, read_timelog());
+        render_status(matrix);
     } else {
-        matrix_write(matrix, read_logo());
+        render_logo(matrix);
     }
 }
 
@@ -205,13 +253,6 @@ void iota_gfx_task_user(void) {
 #endif  // SSD1306OLED
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-#ifdef SSD1306OLED
-        // set_keylog(keycode, record);
-#endif
-        // set_timelog();
-    }
-
     switch (keycode) {
         case QWERTY:
             if (record->event.pressed) {
