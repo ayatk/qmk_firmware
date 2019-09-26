@@ -1,0 +1,21 @@
+name: Build hex file
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: build
+        uses: docker://qmkfm/base_container
+        with:
+          entrypoint: make
+          args: crkbd:ayatk
+      - uses: actions/upload-artifact@master
+        with:
+          name: crkbd_rev1_ayatk.hex
+          path: ./crkbd_rev1_ayatk.hex
