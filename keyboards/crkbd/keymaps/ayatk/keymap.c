@@ -27,6 +27,15 @@ extern uint8_t is_master;
 #define _ADJUST 4
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, RGBRST };
+enum combos {
+  CC_ESC,
+};
+
+const uint16_t PROGMEM cc_combo[] = {KC_LCTL, KC_ENT, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [CC_ESC] = COMBO(cc_combo, KC_ESC), // this works but not quickly
+};
 
 #define KC_ KC_TRNS
 #define KC_XXXXX KC_NO
