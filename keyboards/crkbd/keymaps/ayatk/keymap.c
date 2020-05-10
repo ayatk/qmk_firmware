@@ -47,7 +47,7 @@ combo_t key_combos[COMBO_COUNT] = {
 #define KC_CTLA CTL_T(KC_A)      // Ctrl/A
 #define KC_CTLSC CTL_T(KC_SCLN)  // Ctrl/;
 #define KC_CTLS CTL_T(KC_S)      // Ctrl/S
-#define KC_SCREENSHOT LSFT(RGUI_T(KC_4)))
+#define KC_SCREENSHOT LSFT(LGUI(KC_4))
 #define KC_QWERTY QWERTY
 #define KC_EUCALYN EUCALYN
 
