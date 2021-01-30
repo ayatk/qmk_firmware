@@ -35,9 +35,9 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, RGBRST };
 #define KC_ADJUST MO(_ADJUST)
 #define KC_LSLB LSFT(KC_LBRC)    // [
 #define KC_LSRB LSFT(KC_RBRC)    // ]
-#define KC_CTLA CTL_T(KC_A)      // Ctrl/A
-#define KC_CTLSC CTL_T(KC_SCLN)  // Ctrl/;
-#define KC_CTLS CTL_T(KC_S)      // Ctrl/S
+#define KC_CTLA CTL_T(KC_A)      // Ctrl or A
+#define KC_CTLSC CTL_T(KC_SCLN)  // Ctrl or ;
+#define KC_CTLS CTL_T(KC_S)      // Ctrl or S
 #define KC_SCREENSHOT LSFT(LGUI(KC_4))
 #define KC_QWERTY QWERTY
 #define KC_EUCALYN EUCALYN
