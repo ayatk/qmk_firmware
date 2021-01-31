@@ -14,8 +14,6 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 #endif
 
-extern uint8_t is_master;
-
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -82,18 +80,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 //`--------------------'  `--------------------'
     ),
 
-    /* Lower
+    /* Raise
      * ,-----------------------------------------.             ,-----------------------------------------.
      * | ESC  |  1   |  2   |  3   |  4   |  5   |             |  6   |  7   |  8   |  9   |  0   |  BS  |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
      * | Tab  | HOME | END  |PgDwon| PgUp |SCREENSHOT|         |  ←  |  ↓  |  ↑  |  →  |      |      |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-     * | Shift|  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 |      |
+     * | Shift|  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 | Shift|
      * `---------------------------+------+------+------+------+------+------+---------------------------'
      *                             | GUI |Lower/en|Space|Enter |ADJUST| Alt  |
      *                             `-----------------------------------------'
      */
-    [_LOWER] = LAYOUT_kc( \
+    [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
             ,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -101,11 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             ,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,      ,
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                        ,      ,      ,         ,ADJUST,       \
+                                         ,ADJUST,      ,         ,      ,      \
                                 //`--------------------'  `--------------------'
     ),
 
-    /* Raise
+    /* Lower
      * ,-----------------------------------------.             ,-----------------------------------------.
      * | ESC  |  !   |  @   |  #   |  $   |  %   |             |  ^   |  &   |  *   |  (   |  )   |  BS  |
      * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -116,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             | GUI |ADJUST|Space|Enter|Raise/ja|Alt  |
      *                             `-----------------------------------------'
      */
-    [_RAISE] = LAYOUT_kc( \
+    [_LOWER] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
             ,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -124,15 +122,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             , XXXXX, XXXXX,  LCBR,  LBRC,  LPRN,                   RPRN,  RBRC,  RCBR, XXXXX, XXXXX,      ,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                        ,ADJUST,      ,         ,      ,       \
+                                         ,      ,      ,         ,ADJUST,      \
                                 //`--------------------'  `--------------------'
     ),
 
     [_ADJUST] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-            ,  LRST, XXXXX, XXXXX,   RST, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, XXXXX, XXXXX,\
+            ,  LRST, XXXXX, XXXXX,   RST, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, QWERTY, EUCALYN,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-            ,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX,QWERTY,EUCALYN,XXXXX, XXXXX, XXXXX,\
+            ,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
             ,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
