@@ -56,7 +56,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, EUCALYN, RGBRST };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
-    [_QWERTY] = LAYOUT_kc( \
+    [_QWERTY] = LAYOUT_split_3x6_3( \
     //,-----------------------------------------.                ,-----------------------------------------.
          ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 //`--------------------'  `--------------------'
     ),
 
-    [_EUCALYN] = LAYOUT_kc( \
+    [_EUCALYN] = LAYOUT_split_3x6_3( \
     //,-----------------------------------------.                ,-----------------------------------------.
          ESC,  SCLN,  COMM,   DOT,     P,     Q,                      Y,     G,     D,     M,     F,  BSPC,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             | GUI |Lower/en|Space|Enter |ADJUST| Alt  |
      *                             `-----------------------------------------'
      */
-    [_RAISE] = LAYOUT_kc( \
+    [_RAISE] = LAYOUT_split_3x6_3( \
     //,-----------------------------------------.                ,-----------------------------------------.
             ,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             | GUI |ADJUST|Space|Enter|Raise/ja|Alt  |
      *                             `-----------------------------------------'
      */
-    [_LOWER] = LAYOUT_kc( \
+    [_LOWER] = LAYOUT_split_3x6_3( \
     //,-----------------------------------------.                ,-----------------------------------------.
             ,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,      ,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 //`--------------------'  `--------------------'
     ),
 
-    [_ADJUST] = LAYOUT_kc( \
+    [_ADJUST] = LAYOUT_split_3x6_3( \
     //,-----------------------------------------.                ,-----------------------------------------.
             ,  LRST, XXXXX, XXXXX,   RST, XXXXX,                  XXXXX,   RST, XXXXX, XXXXX, QWERTY, EUCALYN,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
